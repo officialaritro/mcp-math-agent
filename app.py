@@ -1,56 +1,76 @@
 import os
-from fastapi import FastAPI, HTTPException
+import logging
+from fastapi import FastAPI, HTTPException, status, Request
+from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
+import uvicorn
 from pydantic import BaseModel
+from typing import Dict
+from agentturing.utils.logging_config import configure_logging
+from agentturing.pipelines.main_pipeline import AgentPipeline
+from agentturing.api.schemas import AskRequest, AskResponse, FeedbackRequest
+from agentturing.database.models import Base, Feedback
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
-os.environ["TF_CPP_MIN_LOG_LEVEL"] = "0"
+# Configure logging (module-level)
+configure_logging()
+logger = logging.getLogger(__name__)
 
-from agentturing.guardrails.setup import make_output_guard, make_input_guard
-from agentturing.pipelines.main_pipeline import build_graph
+# DB setup
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./agentturing_feedback.db")
+engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {})
+SessionLocal = sessionmaker(bind=engine)
+Base.metadata.create_all(bind=engine)
 
-print("Bootstrapping pipeline (this happens once)...")
-GRAPH = build_graph()
-INPUT_GUARD = make_input_guard()
-OUTPUT_GUARD = make_output_guard()
-print("Pipeline ready.")
+# App init
+app = FastAPI(title="AgentTuring API", version="0.1")
 
-# -------------------------------
-# FastAPI setup
-# -------------------------------
-app = FastAPI(title="Math Tutor API", version="1.0")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["*"],
+)
 
-class QueryRequest(BaseModel):
-    question: str
+pipeline = AgentPipeline()
 
-@app.post("/ask")
-async def ask_math(request: QueryRequest):
-    question = request.question.strip()
-    print(question)
-    if not question:
-        raise HTTPException(status_code=400, detail="Question cannot be empty")
-
-    # 1) Input guard
+@app.post("/ask", response_model=AskResponse)
+async def ask(req: AskRequest):
+    q = req.question.strip()
+    if not q:
+        raise HTTPException(status_code=400, detail="Question is required")
     try:
-        validated_question = INPUT_GUARD(question)
+        res = pipeline.ask(q)
+        return AskResponse(answer=res["answer"], route=res["route"], sources=res.get("sources", []))
     except Exception as e:
-        return {
-            "answer": "This assistant only handles mathematics questions. Please provide a math-related query.",
-            "error": f"Input guard triggered: {str(e)}"
-        }
-    # 2) Run pipeline
+        logger.exception("Error processing ask: %s", e)
+        raise HTTPException(status_code=500, detail="Internal error")
+
+@app.post("/feedback")
+async def feedback(req: FeedbackRequest):
+    s = SessionLocal()
     try:
-        state = {"question": validated_question}
-        result = GRAPH.invoke(state)
-
-        raw_answer = result["answer"][0]["generated_text"]
-        answer = raw_answer.partition("Answer101:")[2].strip() or raw_answer
-
+        fb = Feedback(
+            question=req.question,
+            answer=req.answer,
+            rating=req.rating,
+            comment=req.comment,
+            route=req.route
+        )
+        s.add(fb)
+        s.commit()
+        s.refresh(fb)
+        return {"status": "ok", "id": fb.id}
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Pipeline error: {str(e)}")
+        logger.exception("Failed to store feedback: %s", e)
+        raise HTTPException(status_code=500, detail="Internal error")
+    finally:
+        s.close()
 
-    # 3) Output guard
-    try:
-        safe_answer = OUTPUT_GUARD(answer)
-    except Exception:
-        safe_answer = "The generated answer did not meet safety requirements. Please rephrase the question."
+@app.get("/health")
+async def health():
+    return {"status": "ok"}
 
-    return {"question": question, "answer": safe_answer}
+if __name__ == "__main__":
+    uvicorn.run("app:app", host=os.getenv("APP_HOST", "0.0.0.0"), port=int(os.getenv("APP_PORT", 8000)), log_level="info")

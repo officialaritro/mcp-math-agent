@@ -10,3 +10,16 @@ langchain-huggingface
 guardrails-ai
 sentence-transformers
 langchain-tavily
+fastapi
+uvicorn[standard]
+transformers
+accelerate
+sqlalchemy
+databases
+pydantic
+httpx
+pytest=
+python-multipart
+aiofiles
+uvloop
+gunicorn

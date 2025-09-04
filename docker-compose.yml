@@ -1,0 +1,44 @@
+version: "3.8"
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.5.0
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_storage:/qdrant/storage
+    command: ["--storage-dir", "/qdrant/storage", "--http-address", "0.0.0.0"]
+
+  mcp:
+    build: .
+    image: agentturing-mcp
+    command: uvicorn agentturing.mcp.server_stub:app --host 0.0.0.0 --port 8001
+    ports:
+      - "8001:8001"
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    volumes:
+      - .:/app
+    environment:
+      - DATABASE_URL=sqlite:///./agentturing_feedback.db
+      - QDRANT_URL=http://qdrant:6333
+      - MCP_URL=http://mcp:8001
+    ports:
+      - "8000:8000"
+    depends_on:
+      - qdrant
+      - mcp
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  qdrant_storage:
