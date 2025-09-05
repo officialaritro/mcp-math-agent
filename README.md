@@ -24,7 +24,7 @@ An intelligent **Agentic RAG (Retrieval-Augmented Generation)** system that func
 ![High-Level Design](./docs/hld.png)
 
 ### Low-Level Design
-![Low-Level Design](./docs/lld.png)
+![Low-Level Design](./docs/LLD.png)
 
 ## 📁 Project Structure
 
