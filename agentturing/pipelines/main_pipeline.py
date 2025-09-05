@@ -20,7 +20,7 @@ class AgentPipeline:
         # 1) Check KB
         # Compute embedding using same embedder as ingestion
         from sentence_transformers import SentenceTransformer
-        embed_model = SentenceTransformer(os.getenv("EMBEDDING_MODEL", "all-mpnet-base-v2"))
+        embed_model = SentenceTransformer(os.getenv("EMBEDDING_MODEL", "all-MiniLM-L6-v2"))
         q_embedding = embed_model.encode(question).tolist()
         hits = self.store.query(q_embedding, top_k=top_k)
         # Determine if KB has a good match

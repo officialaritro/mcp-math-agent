@@ -1,0 +1,976 @@
+2025-09-05 18:33:54,285 INFO [agentturing.database.vectorstore] Connecting to Qdrant at http://localhost:6333
+2025-09-05 18:33:54,285 INFO [agentturing.database.vectorstore] Connecting to Qdrant at http://localhost:6333
+2025-09-05 18:33:54,849 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 18:33:54,849 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 18:33:55,475 INFO [agentturing.model.llm] Using Google Gemini model gemini-1.5-flash
+2025-09-05 18:33:55,475 INFO [agentturing.model.llm] Using Google Gemini model gemini-1.5-flash
+2025-09-05 18:33:55,746 INFO [agentturing.database.vectorstore] Connecting to Qdrant at http://localhost:6333
+2025-09-05 18:33:55,746 INFO [agentturing.database.vectorstore] Connecting to Qdrant at http://localhost:6333
+2025-09-05 18:33:55,746 INFO [agentturing.database.vectorstore] Connecting to Qdrant at http://localhost:6333
+2025-09-05 18:33:56,245 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 18:33:56,245 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 18:33:56,245 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 18:33:56,245 INFO [agentturing.model.llm] Using Google Gemini model gemini-1.5-flash
+2025-09-05 18:33:56,245 INFO [agentturing.model.llm] Using Google Gemini model gemini-1.5-flash
+2025-09-05 18:33:56,245 INFO [agentturing.model.llm] Using Google Gemini model gemini-1.5-flash
+2025-09-05 18:35:22,279 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 18:35:22,279 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 18:35:22,279 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 18:35:22,279 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-09-05 18:35:22,279 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-09-05 18:35:22,279 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-09-05 18:35:26,694 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/agentturing_math/points/search "HTTP/1.1 400 Bad Request"
+2025-09-05 18:35:26,694 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/agentturing_math/points/search "HTTP/1.1 400 Bad Request"
+2025-09-05 18:35:26,694 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/agentturing_math/points/search "HTTP/1.1 400 Bad Request"
+2025-09-05 18:35:26,697 ERROR [app] Error processing ask: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: Vector inserting error: expected dim: 1536, got 768"},"time":0.008244099}'
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\app.py", line 44, in ask
+    res = pipeline.ask(q)
+          ^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\pipelines\main_pipeline.py", line 25, in ask
+    hits = self.store.query(q_embedding, top_k=top_k)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\database\vectorstore.py", line 55, in query
+    res = self.client.search(collection_name=self.collection, query_vector=embedding, limit=top_k)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\qdrant_client.py", line 376, in search
+    return self._client.search(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\qdrant_remote.py", line 523, in search
+    search_result = self.http.search_api.search_points(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api\search_api.py", line 936, in search_points
+    return self._build_for_search_points(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api\search_api.py", line 487, in _build_for_search_points
+    return self.api_client.request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api_client.py", line 95, in request
+    return self.send(request, type_)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api_client.py", line 130, in send
+    raise UnexpectedResponse.for_response(response)
+qdrant_client.http.exceptions.UnexpectedResponse: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: Vector inserting error: expected dim: 1536, got 768"},"time":0.008244099}'
+2025-09-05 18:35:26,697 ERROR [app] Error processing ask: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: Vector inserting error: expected dim: 1536, got 768"},"time":0.008244099}'
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\app.py", line 44, in ask
+    res = pipeline.ask(q)
+          ^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\pipelines\main_pipeline.py", line 25, in ask
+    hits = self.store.query(q_embedding, top_k=top_k)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\database\vectorstore.py", line 55, in query
+    res = self.client.search(collection_name=self.collection, query_vector=embedding, limit=top_k)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\qdrant_client.py", line 376, in search
+    return self._client.search(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\qdrant_remote.py", line 523, in search
+    search_result = self.http.search_api.search_points(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api\search_api.py", line 936, in search_points
+    return self._build_for_search_points(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api\search_api.py", line 487, in _build_for_search_points
+    return self.api_client.request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api_client.py", line 95, in request
+    return self.send(request, type_)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api_client.py", line 130, in send
+    raise UnexpectedResponse.for_response(response)
+qdrant_client.http.exceptions.UnexpectedResponse: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: Vector inserting error: expected dim: 1536, got 768"},"time":0.008244099}'
+2025-09-05 18:35:26,697 ERROR [app] Error processing ask: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: Vector inserting error: expected dim: 1536, got 768"},"time":0.008244099}'
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\app.py", line 44, in ask
+    res = pipeline.ask(q)
+          ^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\pipelines\main_pipeline.py", line 25, in ask
+    hits = self.store.query(q_embedding, top_k=top_k)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\database\vectorstore.py", line 55, in query
+    res = self.client.search(collection_name=self.collection, query_vector=embedding, limit=top_k)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\qdrant_client.py", line 376, in search
+    return self._client.search(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\qdrant_remote.py", line 523, in search
+    search_result = self.http.search_api.search_points(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api\search_api.py", line 936, in search_points
+    return self._build_for_search_points(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api\search_api.py", line 487, in _build_for_search_points
+    return self.api_client.request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api_client.py", line 95, in request
+    return self.send(request, type_)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api_client.py", line 130, in send
+    raise UnexpectedResponse.for_response(response)
+qdrant_client.http.exceptions.UnexpectedResponse: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: Vector inserting error: expected dim: 1536, got 768"},"time":0.008244099}'
+2025-09-05 19:39:05,529 INFO [agentturing.database.vectorstore] Connecting to Qdrant at http://localhost:6333
+2025-09-05 19:39:05,529 INFO [agentturing.database.vectorstore] Connecting to Qdrant at http://localhost:6333
+2025-09-05 19:39:06,015 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 19:39:06,015 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 19:39:06,453 INFO [agentturing.model.llm] Using Google Gemini model gemini-1.5-flash
+2025-09-05 19:39:06,453 INFO [agentturing.model.llm] Using Google Gemini model gemini-1.5-flash
+2025-09-05 19:39:06,703 INFO [agentturing.database.vectorstore] Connecting to Qdrant at http://localhost:6333
+2025-09-05 19:39:06,703 INFO [agentturing.database.vectorstore] Connecting to Qdrant at http://localhost:6333
+2025-09-05 19:39:06,703 INFO [agentturing.database.vectorstore] Connecting to Qdrant at http://localhost:6333
+2025-09-05 19:39:07,138 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 19:39:07,138 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 19:39:07,138 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 19:39:07,140 INFO [agentturing.model.llm] Using Google Gemini model gemini-1.5-flash
+2025-09-05 19:39:07,140 INFO [agentturing.model.llm] Using Google Gemini model gemini-1.5-flash
+2025-09-05 19:39:07,140 INFO [agentturing.model.llm] Using Google Gemini model gemini-1.5-flash
+2025-09-05 19:40:03,828 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 19:40:03,828 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 19:40:03,828 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 19:40:03,830 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-09-05 19:40:03,830 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-09-05 19:40:03,830 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-09-05 19:40:08,490 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/agentturing_math/points/search "HTTP/1.1 400 Bad Request"
+2025-09-05 19:40:08,490 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/agentturing_math/points/search "HTTP/1.1 400 Bad Request"
+2025-09-05 19:40:08,490 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/agentturing_math/points/search "HTTP/1.1 400 Bad Request"
+2025-09-05 19:40:08,497 ERROR [app] Error processing ask: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: Vector inserting error: expected dim: 1536, got 768"},"time":0.003391186}'
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\app.py", line 44, in ask
+    res = pipeline.ask(q)
+          ^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\pipelines\main_pipeline.py", line 25, in ask
+    hits = self.store.query(q_embedding, top_k=top_k)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\database\vectorstore.py", line 55, in query
+    res = self.client.search(collection_name=self.collection, query_vector=embedding, limit=top_k)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\qdrant_client.py", line 376, in search
+    return self._client.search(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\qdrant_remote.py", line 523, in search
+    search_result = self.http.search_api.search_points(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api\search_api.py", line 936, in search_points
+    return self._build_for_search_points(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api\search_api.py", line 487, in _build_for_search_points
+    return self.api_client.request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api_client.py", line 95, in request
+    return self.send(request, type_)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api_client.py", line 130, in send
+    raise UnexpectedResponse.for_response(response)
+qdrant_client.http.exceptions.UnexpectedResponse: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: Vector inserting error: expected dim: 1536, got 768"},"time":0.003391186}'
+2025-09-05 19:40:08,497 ERROR [app] Error processing ask: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: Vector inserting error: expected dim: 1536, got 768"},"time":0.003391186}'
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\app.py", line 44, in ask
+    res = pipeline.ask(q)
+          ^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\pipelines\main_pipeline.py", line 25, in ask
+    hits = self.store.query(q_embedding, top_k=top_k)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\database\vectorstore.py", line 55, in query
+    res = self.client.search(collection_name=self.collection, query_vector=embedding, limit=top_k)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\qdrant_client.py", line 376, in search
+    return self._client.search(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\qdrant_remote.py", line 523, in search
+    search_result = self.http.search_api.search_points(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api\search_api.py", line 936, in search_points
+    return self._build_for_search_points(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api\search_api.py", line 487, in _build_for_search_points
+    return self.api_client.request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api_client.py", line 95, in request
+    return self.send(request, type_)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api_client.py", line 130, in send
+    raise UnexpectedResponse.for_response(response)
+qdrant_client.http.exceptions.UnexpectedResponse: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: Vector inserting error: expected dim: 1536, got 768"},"time":0.003391186}'
+2025-09-05 19:40:08,497 ERROR [app] Error processing ask: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: Vector inserting error: expected dim: 1536, got 768"},"time":0.003391186}'
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\app.py", line 44, in ask
+    res = pipeline.ask(q)
+          ^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\pipelines\main_pipeline.py", line 25, in ask
+    hits = self.store.query(q_embedding, top_k=top_k)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\database\vectorstore.py", line 55, in query
+    res = self.client.search(collection_name=self.collection, query_vector=embedding, limit=top_k)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\qdrant_client.py", line 376, in search
+    return self._client.search(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\qdrant_remote.py", line 523, in search
+    search_result = self.http.search_api.search_points(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api\search_api.py", line 936, in search_points
+    return self._build_for_search_points(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api\search_api.py", line 487, in _build_for_search_points
+    return self.api_client.request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api_client.py", line 95, in request
+    return self.send(request, type_)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api_client.py", line 130, in send
+    raise UnexpectedResponse.for_response(response)
+qdrant_client.http.exceptions.UnexpectedResponse: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: Vector inserting error: expected dim: 1536, got 768"},"time":0.003391186}'
+2025-09-05 19:48:51,477 INFO [agentturing.database.vectorstore] Connecting to Qdrant at QDRANT_URL=http://localhost:6333
+2025-09-05 19:48:51,477 INFO [agentturing.database.vectorstore] Connecting to Qdrant at QDRANT_URL=http://localhost:6333
+2025-09-05 19:48:51,983 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 19:48:51,983 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 19:52:12,673 INFO [agentturing.database.vectorstore] Connecting to Qdrant at QDRANT_URL=http://localhost:6333
+2025-09-05 19:52:12,673 INFO [agentturing.database.vectorstore] Connecting to Qdrant at QDRANT_URL=http://localhost:6333
+2025-09-05 19:52:13,160 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 19:52:13,160 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 19:52:13,165 INFO [agentturing.model.llm] Using OpenRouter model meta-llama/llama-3.2-3b-instruct:free
+2025-09-05 19:52:13,165 INFO [agentturing.model.llm] Using OpenRouter model meta-llama/llama-3.2-3b-instruct:free
+2025-09-05 19:52:32,747 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 19:52:32,747 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 19:52:32,749 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: e5-large-v2
+2025-09-05 19:52:32,749 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: e5-large-v2
+2025-09-05 19:52:33,574 WARNING [sentence_transformers.SentenceTransformer] No sentence-transformers model found with name sentence-transformers/e5-large-v2. Creating a new one with mean pooling.
+2025-09-05 19:52:33,574 WARNING [sentence_transformers.SentenceTransformer] No sentence-transformers model found with name sentence-transformers/e5-large-v2. Creating a new one with mean pooling.
+2025-09-05 19:52:33,850 ERROR [app] Error processing ask: sentence-transformers/e5-large-v2 is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `hf auth login` or by passing `token=<your_token>`
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\huggingface_hub\utils\_http.py", line 409, in hf_raise_for_status
+    response.raise_for_status()
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\requests\models.py", line 1026, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://huggingface.co/sentence-transformers/e5-large-v2/resolve/main/adapter_config.json
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\transformers\utils\hub.py", line 478, in cached_files
+    hf_hub_download(
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 1010, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 1117, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 1658, in _raise_on_head_call_error
+    raise head_call_error
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 1546, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 1463, in get_hf_file_metadata
+    r = _request_wrapper(
+        ^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 286, in _request_wrapper
+    response = _request_wrapper(
+               ^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 310, in _request_wrapper
+    hf_raise_for_status(response)
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\huggingface_hub\utils\_http.py", line 459, in hf_raise_for_status
+    raise _format(RepositoryNotFoundError, message, response) from e
+huggingface_hub.errors.RepositoryNotFoundError: 401 Client Error. (Request ID: Root=1-68baf22a-0f6bf18c3540712f2f10f306;84ea85e6-f6ed-47f3-bec7-7f9d54c00f84)
+
+Repository Not Found for url: https://huggingface.co/sentence-transformers/e5-large-v2/resolve/main/adapter_config.json.
+Please make sure you specified the correct `repo_id` and `repo_type`.
+If you are trying to access a private or gated repo, make sure you are authenticated. For more details, see https://huggingface.co/docs/huggingface_hub/authentication
+Invalid username or password.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\app.py", line 46, in ask
+    res = pipeline.ask(q)
+          ^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\pipelines\main_pipeline.py", line 23, in ask
+    embed_model = SentenceTransformer(os.getenv("EMBEDDING_MODEL", "all-mpnet-base-v2"))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\sentence_transformers\SentenceTransformer.py", line 339, in __init__
+    modules = self._load_auto_model(
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\sentence_transformers\SentenceTransformer.py", line 2060, in _load_auto_model
+    transformer_model = Transformer(
+                        ^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\sentence_transformers\models\Transformer.py", line 86, in __init__
+    config, is_peft_model = self._load_config(model_name_or_path, cache_dir, backend, config_args)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\sentence_transformers\models\Transformer.py", line 127, in _load_config
+    find_adapter_config_file(
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\transformers\utils\peft_utils.py", line 88, in find_adapter_config_file
+    adapter_cached_filename = cached_file(
+                              ^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\transformers\utils\hub.py", line 321, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\transformers\utils\hub.py", line 510, in cached_files
+    raise OSError(
+OSError: sentence-transformers/e5-large-v2 is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `hf auth login` or by passing `token=<your_token>`
+2025-09-05 19:52:33,850 ERROR [app] Error processing ask: sentence-transformers/e5-large-v2 is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `hf auth login` or by passing `token=<your_token>`
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\huggingface_hub\utils\_http.py", line 409, in hf_raise_for_status
+    response.raise_for_status()
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\requests\models.py", line 1026, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://huggingface.co/sentence-transformers/e5-large-v2/resolve/main/adapter_config.json
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\transformers\utils\hub.py", line 478, in cached_files
+    hf_hub_download(
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 1010, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 1117, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 1658, in _raise_on_head_call_error
+    raise head_call_error
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 1546, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 1463, in get_hf_file_metadata
+    r = _request_wrapper(
+        ^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 286, in _request_wrapper
+    response = _request_wrapper(
+               ^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 310, in _request_wrapper
+    hf_raise_for_status(response)
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\huggingface_hub\utils\_http.py", line 459, in hf_raise_for_status
+    raise _format(RepositoryNotFoundError, message, response) from e
+huggingface_hub.errors.RepositoryNotFoundError: 401 Client Error. (Request ID: Root=1-68baf22a-0f6bf18c3540712f2f10f306;84ea85e6-f6ed-47f3-bec7-7f9d54c00f84)
+
+Repository Not Found for url: https://huggingface.co/sentence-transformers/e5-large-v2/resolve/main/adapter_config.json.
+Please make sure you specified the correct `repo_id` and `repo_type`.
+If you are trying to access a private or gated repo, make sure you are authenticated. For more details, see https://huggingface.co/docs/huggingface_hub/authentication
+Invalid username or password.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\app.py", line 46, in ask
+    res = pipeline.ask(q)
+          ^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\pipelines\main_pipeline.py", line 23, in ask
+    embed_model = SentenceTransformer(os.getenv("EMBEDDING_MODEL", "all-mpnet-base-v2"))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\sentence_transformers\SentenceTransformer.py", line 339, in __init__
+    modules = self._load_auto_model(
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\sentence_transformers\SentenceTransformer.py", line 2060, in _load_auto_model
+    transformer_model = Transformer(
+                        ^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\sentence_transformers\models\Transformer.py", line 86, in __init__
+    config, is_peft_model = self._load_config(model_name_or_path, cache_dir, backend, config_args)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\sentence_transformers\models\Transformer.py", line 127, in _load_config
+    find_adapter_config_file(
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\transformers\utils\peft_utils.py", line 88, in find_adapter_config_file
+    adapter_cached_filename = cached_file(
+                              ^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\transformers\utils\hub.py", line 321, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\transformers\utils\hub.py", line 510, in cached_files
+    raise OSError(
+OSError: sentence-transformers/e5-large-v2 is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `hf auth login` or by passing `token=<your_token>`
+2025-09-05 19:54:34,972 INFO [agentturing.database.vectorstore] Connecting to Qdrant at QDRANT_URL=http://localhost:6333
+2025-09-05 19:54:34,972 INFO [agentturing.database.vectorstore] Connecting to Qdrant at QDRANT_URL=http://localhost:6333
+2025-09-05 19:54:35,521 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 19:54:35,521 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 19:54:35,523 INFO [agentturing.model.llm] Using OpenRouter model meta-llama/llama-3.2-3b-instruct:free
+2025-09-05 19:54:35,523 INFO [agentturing.model.llm] Using OpenRouter model meta-llama/llama-3.2-3b-instruct:free
+2025-09-05 19:54:50,991 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 19:54:50,991 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 19:54:50,992 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: intfloat/e5-large-v2
+2025-09-05 19:54:50,992 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: intfloat/e5-large-v2
+2025-09-05 19:54:54,471 WARNING [huggingface_hub.file_download] Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+2025-09-05 19:54:54,471 WARNING [huggingface_hub.file_download] Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+2025-09-05 19:56:11,372 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/knowledge_base/points/search "HTTP/1.1 404 Not Found"
+2025-09-05 19:56:11,372 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/knowledge_base/points/search "HTTP/1.1 404 Not Found"
+2025-09-05 19:56:11,374 ERROR [app] Error processing ask: Unexpected Response: 404 (Not Found)
+Raw response content:
+b'{"status":{"error":"Not found: Collection `knowledge_base` doesn\'t exist!"},"time":9.303e-6}'
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\app.py", line 46, in ask
+    res = pipeline.ask(q)
+          ^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\pipelines\main_pipeline.py", line 25, in ask
+    hits = self.store.query(q_embedding, top_k=top_k)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\database\vectorstore.py", line 55, in query
+    res = self.client.search(collection_name=self.collection, query_vector=embedding, limit=top_k)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\qdrant_client.py", line 376, in search
+    return self._client.search(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\qdrant_remote.py", line 523, in search
+    search_result = self.http.search_api.search_points(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api\search_api.py", line 936, in search_points
+    return self._build_for_search_points(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api\search_api.py", line 487, in _build_for_search_points
+    return self.api_client.request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api_client.py", line 95, in request
+    return self.send(request, type_)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api_client.py", line 130, in send
+    raise UnexpectedResponse.for_response(response)
+qdrant_client.http.exceptions.UnexpectedResponse: Unexpected Response: 404 (Not Found)
+Raw response content:
+b'{"status":{"error":"Not found: Collection `knowledge_base` doesn\'t exist!"},"time":9.303e-6}'
+2025-09-05 19:56:11,374 ERROR [app] Error processing ask: Unexpected Response: 404 (Not Found)
+Raw response content:
+b'{"status":{"error":"Not found: Collection `knowledge_base` doesn\'t exist!"},"time":9.303e-6}'
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\app.py", line 46, in ask
+    res = pipeline.ask(q)
+          ^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\pipelines\main_pipeline.py", line 25, in ask
+    hits = self.store.query(q_embedding, top_k=top_k)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\database\vectorstore.py", line 55, in query
+    res = self.client.search(collection_name=self.collection, query_vector=embedding, limit=top_k)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\qdrant_client.py", line 376, in search
+    return self._client.search(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\qdrant_remote.py", line 523, in search
+    search_result = self.http.search_api.search_points(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api\search_api.py", line 936, in search_points
+    return self._build_for_search_points(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api\search_api.py", line 487, in _build_for_search_points
+    return self.api_client.request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api_client.py", line 95, in request
+    return self.send(request, type_)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api_client.py", line 130, in send
+    raise UnexpectedResponse.for_response(response)
+qdrant_client.http.exceptions.UnexpectedResponse: Unexpected Response: 404 (Not Found)
+Raw response content:
+b'{"status":{"error":"Not found: Collection `knowledge_base` doesn\'t exist!"},"time":9.303e-6}'
+2025-09-05 19:59:11,758 INFO [agentturing.database.vectorstore] Connecting to Qdrant at QDRANT_URL=http://localhost:6333
+2025-09-05 19:59:11,758 INFO [agentturing.database.vectorstore] Connecting to Qdrant at QDRANT_URL=http://localhost:6333
+2025-09-05 19:59:12,244 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 19:59:12,244 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 19:59:12,244 INFO [agentturing.model.llm] Using OpenRouter model meta-llama/llama-3.2-3b-instruct:free
+2025-09-05 19:59:12,244 INFO [agentturing.model.llm] Using OpenRouter model meta-llama/llama-3.2-3b-instruct:free
+2025-09-05 20:01:15,114 INFO [agentturing.database.vectorstore] Connecting to Qdrant at QDRANT_URL=http://localhost:6333
+2025-09-05 20:01:15,114 INFO [agentturing.database.vectorstore] Connecting to Qdrant at QDRANT_URL=http://localhost:6333
+2025-09-05 20:01:15,592 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 20:01:15,592 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 20:01:15,594 INFO [agentturing.model.llm] Using OpenRouter model meta-llama/llama-3.2-3b-instruct:free
+2025-09-05 20:01:15,594 INFO [agentturing.model.llm] Using OpenRouter model meta-llama/llama-3.2-3b-instruct:free
+2025-09-05 20:01:47,191 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 20:01:47,191 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 20:01:47,192 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: intfloat/e5-large-v2
+2025-09-05 20:01:47,192 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: intfloat/e5-large-v2
+2025-09-05 20:01:51,779 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/knowledge_base/points/search "HTTP/1.1 400 Bad Request"
+2025-09-05 20:01:51,779 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/knowledge_base/points/search "HTTP/1.1 400 Bad Request"
+2025-09-05 20:01:51,782 ERROR [app] Error processing ask: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: Vector inserting error: expected dim: 384, got 1024"},"time":0.001869675}'
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\app.py", line 46, in ask
+    res = pipeline.ask(q)
+          ^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\pipelines\main_pipeline.py", line 25, in ask
+    hits = self.store.query(q_embedding, top_k=top_k)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\database\vectorstore.py", line 55, in query
+    res = self.client.search(collection_name=self.collection, query_vector=embedding, limit=top_k)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\qdrant_client.py", line 376, in search
+    return self._client.search(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\qdrant_remote.py", line 523, in search
+    search_result = self.http.search_api.search_points(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api\search_api.py", line 936, in search_points
+    return self._build_for_search_points(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api\search_api.py", line 487, in _build_for_search_points
+    return self.api_client.request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api_client.py", line 95, in request
+    return self.send(request, type_)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api_client.py", line 130, in send
+    raise UnexpectedResponse.for_response(response)
+qdrant_client.http.exceptions.UnexpectedResponse: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: Vector inserting error: expected dim: 384, got 1024"},"time":0.001869675}'
+2025-09-05 20:01:51,782 ERROR [app] Error processing ask: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: Vector inserting error: expected dim: 384, got 1024"},"time":0.001869675}'
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\app.py", line 46, in ask
+    res = pipeline.ask(q)
+          ^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\pipelines\main_pipeline.py", line 25, in ask
+    hits = self.store.query(q_embedding, top_k=top_k)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\database\vectorstore.py", line 55, in query
+    res = self.client.search(collection_name=self.collection, query_vector=embedding, limit=top_k)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\qdrant_client.py", line 376, in search
+    return self._client.search(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\qdrant_remote.py", line 523, in search
+    search_result = self.http.search_api.search_points(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api\search_api.py", line 936, in search_points
+    return self._build_for_search_points(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api\search_api.py", line 487, in _build_for_search_points
+    return self.api_client.request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api_client.py", line 95, in request
+    return self.send(request, type_)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api_client.py", line 130, in send
+    raise UnexpectedResponse.for_response(response)
+qdrant_client.http.exceptions.UnexpectedResponse: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: Vector inserting error: expected dim: 384, got 1024"},"time":0.001869675}'
+2025-09-05 20:15:52,743 INFO [agentturing.database.vectorstore] Connecting to Qdrant at QDRANT_URL=http://localhost:6333
+2025-09-05 20:15:52,743 INFO [agentturing.database.vectorstore] Connecting to Qdrant at QDRANT_URL=http://localhost:6333
+2025-09-05 20:15:53,228 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 20:15:53,228 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 20:15:53,231 INFO [agentturing.model.llm] Using OpenRouter model meta-llama/llama-3.2-3b-instruct:free
+2025-09-05 20:15:53,231 INFO [agentturing.model.llm] Using OpenRouter model meta-llama/llama-3.2-3b-instruct:free
+2025-09-05 20:16:24,183 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 20:16:24,183 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 20:16:24,192 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: intfloat/e5-large-v2
+2025-09-05 20:16:24,192 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: intfloat/e5-large-v2
+2025-09-05 20:16:29,541 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/knowledge_base/points/search "HTTP/1.1 400 Bad Request"
+2025-09-05 20:16:29,541 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/knowledge_base/points/search "HTTP/1.1 400 Bad Request"
+2025-09-05 20:16:29,548 ERROR [app] Error processing ask: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: Vector inserting error: expected dim: 384, got 1024"},"time":0.001973079}'
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\app.py", line 46, in ask
+    res = pipeline.ask(q)
+          ^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\pipelines\main_pipeline.py", line 25, in ask
+    hits = self.store.query(q_embedding, top_k=top_k)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\database\vectorstore.py", line 55, in query
+    res = self.client.search(collection_name=self.collection, query_vector=embedding, limit=top_k)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\qdrant_client.py", line 376, in search
+    return self._client.search(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\qdrant_remote.py", line 523, in search
+    search_result = self.http.search_api.search_points(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api\search_api.py", line 936, in search_points
+    return self._build_for_search_points(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api\search_api.py", line 487, in _build_for_search_points
+    return self.api_client.request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api_client.py", line 95, in request
+    return self.send(request, type_)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api_client.py", line 130, in send
+    raise UnexpectedResponse.for_response(response)
+qdrant_client.http.exceptions.UnexpectedResponse: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: Vector inserting error: expected dim: 384, got 1024"},"time":0.001973079}'
+2025-09-05 20:16:29,548 ERROR [app] Error processing ask: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: Vector inserting error: expected dim: 384, got 1024"},"time":0.001973079}'
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\app.py", line 46, in ask
+    res = pipeline.ask(q)
+          ^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\pipelines\main_pipeline.py", line 25, in ask
+    hits = self.store.query(q_embedding, top_k=top_k)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\agentturing\database\vectorstore.py", line 55, in query
+    res = self.client.search(collection_name=self.collection, query_vector=embedding, limit=top_k)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\qdrant_client.py", line 376, in search
+    return self._client.search(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\qdrant_remote.py", line 523, in search
+    search_result = self.http.search_api.search_points(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api\search_api.py", line 936, in search_points
+    return self._build_for_search_points(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api\search_api.py", line 487, in _build_for_search_points
+    return self.api_client.request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api_client.py", line 95, in request
+    return self.send(request, type_)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\qdrant_client\http\api_client.py", line 130, in send
+    raise UnexpectedResponse.for_response(response)
+qdrant_client.http.exceptions.UnexpectedResponse: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: Vector inserting error: expected dim: 384, got 1024"},"time":0.001973079}'
+2025-09-05 20:19:29,468 INFO [agentturing.database.vectorstore] Connecting to Qdrant at QDRANT_URL=http://localhost:6333
+2025-09-05 20:19:29,468 INFO [agentturing.database.vectorstore] Connecting to Qdrant at QDRANT_URL=http://localhost:6333
+2025-09-05 20:19:29,930 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 20:19:29,930 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 20:19:29,930 INFO [agentturing.model.llm] Using OpenRouter model meta-llama/llama-3.2-3b-instruct:free
+2025-09-05 20:19:29,930 INFO [agentturing.model.llm] Using OpenRouter model meta-llama/llama-3.2-3b-instruct:free
+2025-09-05 20:20:06,867 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 20:20:06,867 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 20:20:06,874 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-05 20:20:06,874 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-05 20:20:11,285 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/knowledge_base/points/search "HTTP/1.1 200 OK"
+2025-09-05 20:20:11,285 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/knowledge_base/points/search "HTTP/1.1 200 OK"
+2025-09-05 20:20:14,012 ERROR [agentturing.mcp.client] MCP web_search failed: [Errno 11001] getaddrinfo failed
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\agentturing\mcp\client.py", line 20, in web_search
+    resp = self.client.post(f"{self.url}/tools/websearch", json={"query": query, "top_k": top_k})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_client.py", line 1144, in post
+    return self.request(
+           ^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [Errno 11001] getaddrinfo failed
+2025-09-05 20:20:14,012 ERROR [agentturing.mcp.client] MCP web_search failed: [Errno 11001] getaddrinfo failed
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\agentturing\mcp\client.py", line 20, in web_search
+    resp = self.client.post(f"{self.url}/tools/websearch", json={"query": query, "top_k": top_k})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_client.py", line 1144, in post
+    return self.request(
+           ^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [Errno 11001] getaddrinfo failed
+2025-09-05 20:23:57,098 INFO [agentturing.database.vectorstore] Connecting to Qdrant at QDRANT_URL=http://localhost:6333
+2025-09-05 20:23:57,098 INFO [agentturing.database.vectorstore] Connecting to Qdrant at QDRANT_URL=http://localhost:6333
+2025-09-05 20:23:57,620 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 20:23:57,620 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 20:23:57,620 INFO [agentturing.model.llm] Using OpenRouter model meta-llama/llama-3.2-3b-instruct:free
+2025-09-05 20:23:57,620 INFO [agentturing.model.llm] Using OpenRouter model meta-llama/llama-3.2-3b-instruct:free
+2025-09-05 20:24:38,577 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 20:24:38,577 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 20:24:38,581 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-05 20:24:38,581 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-05 20:24:43,730 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/knowledge_base/points/search "HTTP/1.1 200 OK"
+2025-09-05 20:24:43,730 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/knowledge_base/points/search "HTTP/1.1 200 OK"
+2025-09-05 20:24:55,811 ERROR [agentturing.mcp.client] MCP web_search failed: timed out
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 136, in handle_request
+    raise exc
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 106, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 177, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 126, in read
+    with map_exceptions(exc_map):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadTimeout: timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\agentturing\mcp\client.py", line 20, in web_search
+    resp = self.client.post(f"{self.url}/tools/websearch", json={"query": query, "top_k": top_k})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_client.py", line 1144, in post
+    return self.request(
+           ^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadTimeout: timed out
+2025-09-05 20:24:55,811 ERROR [agentturing.mcp.client] MCP web_search failed: timed out
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 136, in handle_request
+    raise exc
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 106, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 177, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 126, in read
+    with map_exceptions(exc_map):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadTimeout: timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\code\mcp-math-agent\agentturing\mcp\client.py", line 20, in web_search
+    resp = self.client.post(f"{self.url}/tools/websearch", json={"query": query, "top_k": top_k})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_client.py", line 1144, in post
+    return self.request(
+           ^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "D:\code\mcp-math-agent\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadTimeout: timed out
+2025-09-05 20:28:06,794 INFO [agentturing.database.vectorstore] Connecting to Qdrant at QDRANT_URL=http://localhost:6333
+2025-09-05 20:28:06,794 INFO [agentturing.database.vectorstore] Connecting to Qdrant at QDRANT_URL=http://localhost:6333
+2025-09-05 20:28:07,256 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 20:28:07,256 INFO [httpx] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-09-05 20:28:07,256 INFO [agentturing.model.llm] Using OpenRouter model meta-llama/llama-3.2-3b-instruct:free
+2025-09-05 20:28:07,256 INFO [agentturing.model.llm] Using OpenRouter model meta-llama/llama-3.2-3b-instruct:free
+2025-09-05 20:31:41,520 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 20:31:41,520 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 20:31:41,520 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-05 20:31:41,520 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-05 20:31:45,817 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/knowledge_base/points/search "HTTP/1.1 200 OK"
+2025-09-05 20:31:45,817 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/knowledge_base/points/search "HTTP/1.1 200 OK"
+2025-09-05 20:31:45,843 INFO [httpx] HTTP Request: POST http://127.0.0.1:8001/tools/websearch "HTTP/1.1 200 OK"
+2025-09-05 20:31:45,843 INFO [httpx] HTTP Request: POST http://127.0.0.1:8001/tools/websearch "HTTP/1.1 200 OK"
+2025-09-05 21:02:26,569 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 21:02:26,569 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 21:02:26,571 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-05 21:02:26,571 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-05 21:02:30,452 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/knowledge_base/points/search "HTTP/1.1 200 OK"
+2025-09-05 21:02:30,452 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/knowledge_base/points/search "HTTP/1.1 200 OK"
+2025-09-05 21:02:30,474 INFO [httpx] HTTP Request: POST http://127.0.0.1:8001/tools/websearch "HTTP/1.1 200 OK"
+2025-09-05 21:02:30,474 INFO [httpx] HTTP Request: POST http://127.0.0.1:8001/tools/websearch "HTTP/1.1 200 OK"
+2025-09-05 21:03:01,877 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 21:03:01,877 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 21:03:01,879 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-05 21:03:01,879 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-05 21:03:07,446 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/knowledge_base/points/search "HTTP/1.1 200 OK"
+2025-09-05 21:03:07,446 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/knowledge_base/points/search "HTTP/1.1 200 OK"
+2025-09-05 21:03:07,475 INFO [httpx] HTTP Request: POST http://127.0.0.1:8001/tools/websearch "HTTP/1.1 200 OK"
+2025-09-05 21:03:07,475 INFO [httpx] HTTP Request: POST http://127.0.0.1:8001/tools/websearch "HTTP/1.1 200 OK"
+2025-09-05 21:22:52,852 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 21:22:52,852 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 21:22:52,854 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-05 21:22:52,854 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-05 21:22:57,233 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/knowledge_base/points/search "HTTP/1.1 200 OK"
+2025-09-05 21:22:57,233 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/knowledge_base/points/search "HTTP/1.1 200 OK"
+2025-09-05 21:22:57,254 INFO [httpx] HTTP Request: POST http://127.0.0.1:8001/tools/websearch "HTTP/1.1 200 OK"
+2025-09-05 21:22:57,254 INFO [httpx] HTTP Request: POST http://127.0.0.1:8001/tools/websearch "HTTP/1.1 200 OK"
+2025-09-05 21:26:10,231 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 21:26:10,231 INFO [sentence_transformers.SentenceTransformer] Use pytorch device_name: cpu
+2025-09-05 21:26:10,232 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-05 21:26:10,232 INFO [sentence_transformers.SentenceTransformer] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-05 21:26:14,355 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/knowledge_base/points/search "HTTP/1.1 200 OK"
+2025-09-05 21:26:14,355 INFO [httpx] HTTP Request: POST http://localhost:6333/collections/knowledge_base/points/search "HTTP/1.1 200 OK"
+2025-09-05 21:26:14,374 INFO [httpx] HTTP Request: POST http://127.0.0.1:8001/tools/websearch "HTTP/1.1 200 OK"
+2025-09-05 21:26:14,374 INFO [httpx] HTTP Request: POST http://127.0.0.1:8001/tools/websearch "HTTP/1.1 200 OK"

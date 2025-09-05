@@ -8,10 +8,10 @@ from agentturing.database.vectorstore import QdrantVectorStore
 KB_PATH = "agentturing/database/knowledge_base"
 
 # Collection name in Qdrant
-COLLECTION_NAME = "math_kb"
+COLLECTION_NAME = os.getenv("QDRANT_COLLECTION", "knowledge_base")
 
 # Embedding model (768 dimensions)
-EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "sentence-transformers/all-MiniLM-L6-v2")
 
 
 def load_docs(path: str):

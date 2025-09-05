@@ -16,7 +16,7 @@ class QdrantVectorStore:
     def __init__(self, url: str = QDRANT_URL, api_key: Optional[str] = None, collection: str = COLLECTION_NAME):
         logger.info("Connecting to Qdrant at %s", url)
         self.client = QdrantClient(url=url, api_key=api_key)
-        self.collection = collection
+        self.collection = "knowledge_base"
 
     def _ensure_collection(self, vector_size: int = 768):
         """Ensure the collection exists, create if missing."""
