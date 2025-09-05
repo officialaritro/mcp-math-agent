@@ -1,6 +1,6 @@
 /.idea
 /.env
 /mcp-agent/database/qdrantdb/
-test_providers.py
-run_demo.sh
-bootstrap.sh
+/test_providers.py
+/run_demo.sh
+/bootstrap.sh
