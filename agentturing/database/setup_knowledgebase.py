@@ -1,69 +1,70 @@
 import os
-import glob
-import logging
-from typing import List
-from sentence_transformers import SentenceTransformer
+import argparse
 from tqdm import tqdm
-import uuid
-import json
-
+from sentence_transformers import SentenceTransformer
 from agentturing.database.vectorstore import QdrantVectorStore
 
-logger = logging.getLogger(__name__)
+# Path to your KB
+KB_PATH = "agentturing/database/knowledge_base"
 
-DATA_DIR = os.getenv("MATH_KB_DIR", "agentturing/database/math_kb")
-EMBED_MODEL = os.getenv("EMBEDDING_MODEL", "all-mpnet-base-v2")  # change if e5-large-v2 available
+# Collection name in Qdrant
+COLLECTION_NAME = "math_kb"
 
-def load_texts_from_dir(dir_path: str) -> List[dict]:
+# Embedding model (768 dimensions)
+EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+
+
+def load_docs(path: str):
     docs = []
-    for path in glob.glob(os.path.join(dir_path, "**", "*.txt"), recursive=True):
-        with open(path, "r", encoding="utf-8") as f:
-            text = f.read().strip()
-            docs.append({"id": str(uuid.uuid4()), "text": text, "source": path})
+    for root, _, files in os.walk(path):
+        for file in files:
+            if file.endswith(".txt"):
+                file_path = os.path.join(root, file)
+                with open(file_path, "r", encoding="utf-8") as f:
+                    docs.append(f.read())
     return docs
 
-def chunk_text(text: str, max_tokens: int = 512):
-    # very simple chunker splitting by paragraphs / sentences; replace with tiktoken if available
-    parts = text.split("\n\n")
-    out = []
-    cur = ""
-    for p in parts:
-        if len(cur) + len(p) > 4000:
-            out.append(cur)
-            cur = p
-        else:
-            cur = (cur + "\n\n" + p).strip()
-    if cur:
-        out.append(cur)
-    return out
 
-def embed_and_upsert(docs):
-    logger.info("Loading embedder %s", EMBED_MODEL)
-    embedder = SentenceTransformer(EMBED_MODEL)
-    store = QdrantVectorStore()
-    ids = []
-    embeddings = []
-    metas = []
-    for d in tqdm(docs):
-        chunks = chunk_text(d["text"])
-        for c in chunks:
-            ids.append(str(uuid.uuid4()))
-            embeddings.append(embedder.encode(c).tolist())
-            metas.append({"source": d["source"], "text_excerpt": c[:400]})
-    logger.info("Upserting %d vectors", len(ids))
+def embed_and_upsert(docs, store, embedder):
+    ids, embeddings, metas = [], [], []
+
+    for idx, doc in enumerate(tqdm(docs, desc="Embedding documents")):
+        vec = embedder.encode(doc).tolist()
+        ids.append(str(idx))
+        embeddings.append(vec)
+        metas.append({"text": doc})
+
     store.upsert(ids, embeddings, metas)
 
-def main(rebuild=False):
-    docs = load_texts_from_dir(DATA_DIR)
+
+def main(rebuild: bool = False):
+    # Initialize embedder
+    embedder = SentenceTransformer(EMBEDDING_MODEL)
+
+    # Connect to Qdrant
+    vector_size = embedder.get_sentence_embedding_dimension()
+    store = QdrantVectorStore(collection=COLLECTION_NAME)
+    # If rebuild flag is set, delete & recreate collection
+    if rebuild:
+        print(f"[INFO] Rebuilding collection '{COLLECTION_NAME}' in Qdrant...")
+        store.recreate_collection(vector_size=vector_size)
+    else:
+        store._ensure_collection(vector_size=vector_size)
+
+    # Load documents
+    docs = load_docs(KB_PATH)
     if not docs:
-        logger.warning("No docs found in %s", DATA_DIR)
+        print(f"[WARN] No docs found in {KB_PATH}")
         return
-    embed_and_upsert(docs)
-    logger.info("Ingestion complete.")
+
+    # Embed + upsert
+    embed_and_upsert(docs, store, embedder)
+    print(f"[SUCCESS] Inserted {len(docs)} docs into collection '{COLLECTION_NAME}'.")
+
 
 if __name__ == "__main__":
-    import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("--rebuild", action="store_true")
+    parser.add_argument("--rebuild", action="store_true", help="Rebuild collection before inserting")
     args = parser.parse_args()
+
     main(rebuild=args.rebuild)

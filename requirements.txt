@@ -18,8 +18,7 @@ sqlalchemy
 databases
 pydantic
 httpx
-pytest=
+pytest
 python-multipart
 aiofiles
-uvloop
 gunicorn

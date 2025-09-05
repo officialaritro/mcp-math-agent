@@ -1,3 +1,4 @@
+import os
 import logging
 from typing import Optional, Dict, Any
 from agentturing.database.vectorstore import QdrantVectorStore
